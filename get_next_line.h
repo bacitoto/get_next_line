@@ -6,7 +6,7 @@
 /*   By: fde-mato <fde-mato@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 16:53:55 by fde-mato          #+#    #+#             */
-/*   Updated: 2025/02/14 17:41:55 by fde-mato         ###   ########.fr       */
+/*   Updated: 2025/02/19 16:19:11 by fde-mato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@
 
 char	*get_next_line(int fd);
 size_t	ft_linelen(const char *str);
+size_t	ft_strlcat(char *dest, char const *src, size_t size);
 
 #endif
