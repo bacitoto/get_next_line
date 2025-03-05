@@ -6,62 +6,50 @@
 /*   By: fde-mato <fde-mato@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 15:25:17 by fde-mato          #+#    #+#             */
-/*   Updated: 2025/03/04 19:18:23 by fde-mato         ###   ########.fr       */
+/*   Updated: 2025/03/05 20:32:59 by fde-mato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#define BUFFER_SIZE 10
 
 char	*get_next_line(int fd)
-
 {
-	size_t		nbyte;
-	static int	index;
+	static char	*buffer;
 	char		*line;
-	char		*buff	
-	static char	*statstr;
-	
-	index = 0;
+
 	line = NULL;
-	buff = (char *)malloc((BUFFER_SIZE + 1) * sizeof (char))
-	if (!buff)
-		return(NULL);
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	READ
-	if (read <= 0)
-		break;
-	else (read > 0)
+	buffer = (char *)malloc((BUFFER_SIZE + 1));
+	if (!buffer)
+		return (NULL);
+	if (read(fd, buffer, BUFFER_SIZE) < 0)
+			return (NULL);
+	while(buffer)
 	{
-		
+		line = ft_strjoin(line, buffer);
+		if(ft_cleanbuf_gnl(buffer) == 1)
+			break ;
+		if (read(fd, buffer, BUFFER_SIZE) < 0)
+			return (free(line), NULL);
 	}
-	line = ft_strjoin(line, buff);
-	
-	if (line = ft_linelen(statstr) <= 0)
-	{
-			return(statstr)
-			free (statstr)
-	}
-	else
-	{
-		line
-	}		
-	
-		return(NULL);
-	while (read nbyte-in-nbyte loop stops when \n is found)
-	{
-		read(fd, statstr, BUFFER_SIZE);
-		line = strjoin(line, statstr);
-		if (ft_linelen)ft_readfile
-		if ()
-	}
-	//size_t	ft_strlcat(line, char const *tmp, size_t ft_linelen(line))
-
-	ft_linelen(buffed);
-	return(buff_ate_\n);
+	return(line);
 }
+int	main(void)
+{
+	int		fd = open("pseudo.txt", O_RDONLY);
+	char	*str = get_next_line(fd);
+	size_t i = 1;
 
-read(fd,buffer, BUFFER_SIZE)
-line = strljoin() -> concatena buffer para line, at'e ao linelen
-limpar buffer
+	while(str)
+	{
+		str = get_next_line(fd);
+		printf("line%lu=%s",i , str);
+		i++;
+		free(str);
+		str = get_next_line(fd);
+	}
+
+	close(fd);
+	return(0);
+}
