@@ -6,7 +6,7 @@
 /*   By: fde-mato <fde-mato@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 15:25:17 by fde-mato          #+#    #+#             */
-/*   Updated: 2025/03/05 20:32:59 by fde-mato         ###   ########.fr       */
+/*   Updated: 2025/03/05 20:36:40 by fde-mato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer;
+	static char	buffer[BUFFER_SIZE + 1];
 	char		*line;
 
 	line = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	buffer = (char *)malloc((BUFFER_SIZE + 1));
-	if (!buffer)
+//	buffer = (char *)malloc((BUFFER_SIZE + 1));
+	if (!buffer[0])
 		return (NULL);
 	if (read(fd, buffer, BUFFER_SIZE) < 0)
 			return (NULL);
-	while(buffer)
+	while(buffer[0])
 	{
 		line = ft_strjoin(line, buffer);
 		if(ft_cleanbuf_gnl(buffer) == 1)
