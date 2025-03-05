@@ -6,7 +6,7 @@
 /*   By: fde-mato <fde-mato@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 15:25:17 by fde-mato          #+#    #+#             */
-/*   Updated: 2025/03/05 22:05:13 by fde-mato         ###   ########.fr       */
+/*   Updated: 2025/03/05 23:14:09 by fde-mato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,9 @@ char	*get_next_line(int fd)
 	line = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-//	buffer = malloc((BUFFER_SIZE + 1));
 	buffer[BUFFER_SIZE] = '\0';
-	if (!buffer[0])
-		if (read(fd, buffer, BUFFER_SIZE) < 0)
-			return (NULL);
+	if (!buffer[0] && read(fd, buffer, BUFFER_SIZE) < 0)
+		return (NULL);
 	while(buffer[0])
 	{
 		line = ft_strjoin(line, buffer);
@@ -38,17 +36,16 @@ char	*get_next_line(int fd)
 }
 int main(void)
 {
-	char    *str;
-	int     fd;
+	int		fd = open("TestFile", O_RDONLY);
+	char    *str = get_next_line(fd);
 	int 	i = 1;
-	fd = open("TestFile", O_RDONLY);
-	str = get_next_line(fd);
 	while(str)
 	{
-		printf("str%d = %s", i, str);
+		printf("linha%d %s", i, str);
 		i++;
 		free(str);
 		str = get_next_line(fd);
 	}
+	close(fd);
 	return (0);
 }
