@@ -6,7 +6,7 @@
 /*   By: fde-mato <fde-mato@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 15:25:22 by fde-mato          #+#    #+#             */
-/*   Updated: 2025/03/05 20:28:31 by fde-mato         ###   ########.fr       */
+/*   Updated: 2025/03/05 22:06:33 by fde-mato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,13 @@
 size_t	ft_linelen(char *str)
 {
 	size_t	n;
-
+	
+	if (!str)
+		return(0);
 	n = 0;
 	while (str[n] && str[n] != '\n')
 		n++;
-	if (str[n] == 1)
+	if (str[n] == '\n')
 		n++;
 	return (n);
 }
@@ -41,9 +43,11 @@ int	ft_cleanbuf_gnl(char *str)
 		while (str[i])
 			str[j++] = str[i++];
 	}
+		while (j <= BUFFER_SIZE)
+			str[j++] = '\0';
 	return (check_nl);
-}
-char	*ft_strjoin(char *line, char *buffer)
+	}
+char	*ft_strjoin(char *s1, char *buffer)
 {
 	size_t	i;
 	size_t	k;
@@ -53,14 +57,14 @@ char	*ft_strjoin(char *line, char *buffer)
 
 	i = 0;
 	k = 0;
-	len1 = ft_linelen(line);
+	len1 = ft_linelen(s1);
 	len2 = ft_linelen(buffer);
 	dest = malloc(len1 + len2 + 1);
 	if (!dest)
-		return (free(line), NULL);
+		return (free(s1), NULL);
 	while (i < len1)
 	{
-		dest[i] = line[i];
+		dest[i] = s1[i];
 		i++;
 	}
 	while (k < len2)
@@ -69,5 +73,5 @@ char	*ft_strjoin(char *line, char *buffer)
 		k++;
 	}
 	dest[i + k] = '\0';
-	return (free(line), dest);
+	return (free(s1), dest);
 }
