@@ -6,48 +6,68 @@
 /*   By: fde-mato <fde-mato@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 15:25:22 by fde-mato          #+#    #+#             */
-/*   Updated: 2025/03/04 18:34:11 by fde-mato         ###   ########.fr       */
+/*   Updated: 2025/03/05 20:28:31 by fde-mato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_linelen(const char *str)
+size_t	ft_linelen(char *str)
 {
-	size_t	i;
+	size_t	n;
 
-	i = 0;
-	while (str[i] && str[i] != '\n')
-		i++;
-	return (i);
+	n = 0;
+	while (str[n] && str[n] != '\n')
+		n++;
+	if (str[n] == 1)
+		n++;
+	return (n);
 }
-#include "libft.h"
+int	ft_cleanbuf_gnl(char *str)
+{
+	int	check_nl;
+	int	i;
+	int	j;
 
-char	*ft_strjoin(char const *str1, char const *str2)
+	check_nl = 0;
+	i = 0;
+	j = 0;
+	while (str[i] != '\n' && str[i])
+		i++;
+	if (str[i] == '\n')
+	{
+		check_nl++;
+		i++;
+		while (str[i])
+			str[j++] = str[i++];
+	}
+	return (check_nl);
+}
+char	*ft_strjoin(char *line, char *buffer)
 {
 	size_t	i;
 	size_t	k;
+	size_t	len1;
+	size_t	len2;
 	char	*dest;
 
 	i = 0;
 	k = 0;
-	if (!str1 && !str2)
-		return (NULL);
-	if (ft_strlen(str1) + ft_strlen(str2) == 0)
-		return (ft_strdup(""));
-	dest = malloc((ft_strlen(str1) + ft_strlen(str2) + 1) * sizeof(char));
+	len1 = ft_linelen(line);
+	len2 = ft_linelen(buffer);
+	dest = malloc(len1 + len2 + 1);
 	if (!dest)
-		return (NULL);
-	while (str1[i])
+		return (free(line), NULL);
+	while (i < len1)
 	{
-		dest[i] = str1[i];
+		dest[i] = line[i];
 		i++;
 	}
-	while (str2[k])
+	while (k < len2)
 	{
-		dest[i + k] = str2[k];
+		dest[i + k] = buffer[k];
 		k++;
 	}
 	dest[i + k] = '\0';
-	return (dest);
+	return (free(line), dest);
 }
