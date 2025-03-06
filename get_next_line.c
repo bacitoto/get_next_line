@@ -6,7 +6,7 @@
 /*   By: fde-mato <fde-mato@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 15:25:17 by fde-mato          #+#    #+#             */
-/*   Updated: 2025/03/06 15:40:56 by fde-mato         ###   ########.fr       */
+/*   Updated: 2025/03/06 15:53:29 by fde-mato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,24 +26,25 @@ char	*get_next_line(int fd)
 {
 	static char	buffer[BUFFER_SIZE + 1];
 	char		*line;
+
 	line = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	buffer[BUFFER_SIZE] = '\0';
 	if (!buffer[0] && read(fd, buffer, BUFFER_SIZE) < 0)
 		return (NULL);
-	while(buffer[0])
+	while (buffer[0])
 	{
 		line = ft_strjoin(line, buffer);
 		if (!line)
 			return (NULL);
 		ft_buffshort(buffer);
 		if (line[ft_strlen(line) - 1] == '\n')
-			return(line);
+			return (line);
 		if (read(fd, buffer, BUFFER_SIZE) < 0)
 			return (free(line), NULL);
 	}
-	return(line);
+	return (line);
 }
 /* int main(void)
 {
@@ -59,4 +60,12 @@ char	*get_next_line(int fd)
 	}
 	close(fd);
 	return (0);
+} */
+/* int main(void)
+{
+	char	*line;
+	line = get_next_line(1);
+	printf("return:%s", line);
+	free(line);
+	return(0);
 } */
