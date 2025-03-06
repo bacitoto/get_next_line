@@ -6,7 +6,7 @@
 /*   By: fde-mato <fde-mato@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 16:53:55 by fde-mato          #+#    #+#             */
-/*   Updated: 2025/03/05 22:05:38 by fde-mato         ###   ########.fr       */
+/*   Updated: 2025/03/06 15:42:27 by fde-mato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@
 #  define BUFFER_SIZE 1337
 # endif
 
-
-#include <fcntl.h>
+# include <fcntl.h>
 # include <stdio.h>
 # include <unistd.h>
 # include <limits.h>
@@ -27,6 +26,7 @@
 char	*get_next_line(int fd);
 size_t	ft_linelen(char *str);
 char	*ft_strjoin(char *line, char *buffer);
-int	ft_cleanbuf_gnl(char *str);
+void	ft_buffshort(char *buffer);
+int		ft_strlen(const char *str);
 
 #endif
