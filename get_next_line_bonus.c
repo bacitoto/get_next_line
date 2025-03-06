@@ -6,7 +6,7 @@
 /*   By: fde-mato <fde-mato@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 15:25:17 by fde-mato          #+#    #+#             */
-/*   Updated: 2025/03/06 16:45:02 by fde-mato         ###   ########.fr       */
+/*   Updated: 2025/03/06 17:25:30 by fde-mato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ char	*get_next_line(int fd)
 			buffer[fd][0] = '\0';
 		return (NULL);
 	}
-	buffer[fd][BUFFER_SIZE] = '\0';
 	if (!buffer[fd][0] && read(fd, buffer[fd], BUFFER_SIZE) < 0)
 		return (NULL);
 	while (buffer[fd][0])
