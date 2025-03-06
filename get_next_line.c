@@ -6,11 +6,21 @@
 /*   By: fde-mato <fde-mato@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 15:25:17 by fde-mato          #+#    #+#             */
-/*   Updated: 2025/03/05 23:14:09 by fde-mato         ###   ########.fr       */
+/*   Updated: 2025/03/06 15:40:56 by fde-mato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+int	ft_strlen(const char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
+}
 
 char	*get_next_line(int fd)
 {
@@ -27,14 +37,15 @@ char	*get_next_line(int fd)
 		line = ft_strjoin(line, buffer);
 		if (!line)
 			return (NULL);
-		if (ft_cleanbuf_gnl(buffer) == 1)
-			break ;
+		ft_buffshort(buffer);
+		if (line[ft_strlen(line) - 1] == '\n')
+			return(line);
 		if (read(fd, buffer, BUFFER_SIZE) < 0)
 			return (free(line), NULL);
 	}
 	return(line);
 }
-int main(void)
+/* int main(void)
 {
 	int		fd = open("TestFile", O_RDONLY);
 	char    *str = get_next_line(fd);
@@ -48,4 +59,4 @@ int main(void)
 	}
 	close(fd);
 	return (0);
-}
+} */
