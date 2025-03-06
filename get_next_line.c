@@ -6,7 +6,7 @@
 /*   By: fde-mato <fde-mato@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 15:25:17 by fde-mato          #+#    #+#             */
-/*   Updated: 2025/03/06 15:53:29 by fde-mato         ###   ########.fr       */
+/*   Updated: 2025/03/06 17:21:40 by fde-mato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ char	*get_next_line(int fd)
 	line = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	buffer[BUFFER_SIZE] = '\0';
 	if (!buffer[0] && read(fd, buffer, BUFFER_SIZE) < 0)
 		return (NULL);
 	while (buffer[0])
