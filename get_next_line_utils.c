@@ -6,7 +6,7 @@
 /*   By: fde-mato <fde-mato@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 15:25:22 by fde-mato          #+#    #+#             */
-/*   Updated: 2025/03/05 22:53:40 by fde-mato         ###   ########.fr       */
+/*   Updated: 2025/03/06 15:42:49 by fde-mato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 size_t	ft_linelen(char *str)
 {
 	size_t	n;
-	
+
 	if (!str)
 		return(0);
 	n = 0;
@@ -25,28 +25,21 @@ size_t	ft_linelen(char *str)
 		n++;
 	return (n);
 }
-int	ft_cleanbuf_gnl(char *buffer)
+void	ft_buffshort(char *buffer)
 {
-	int	check_nl;
 	int	i;
 	int	k;
 
-	check_nl = 0;
 	i = 0;
 	k = 0;
 	while (buffer[i] != '\n' && buffer[i])
 		i++;
 	if (buffer[i] == '\n')
-	{
-		check_nl++;
 		i++;
-		while (buffer[i])
-			buffer[k++] = buffer[i++];
-	}
-		while (k <= BUFFER_SIZE)
-			buffer[k++] = '\0';
-	return (check_nl);
-	}
+	while (buffer[k])
+		buffer[k++] = buffer[i++];
+	buffer[k] = '\0';
+}
 char	*ft_strjoin(char *s1, char *buffer)
 {
 	size_t	i;
