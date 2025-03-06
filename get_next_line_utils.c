@@ -6,7 +6,7 @@
 /*   By: fde-mato <fde-mato@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 15:25:22 by fde-mato          #+#    #+#             */
-/*   Updated: 2025/03/06 15:42:49 by fde-mato         ###   ########.fr       */
+/*   Updated: 2025/03/06 15:57:00 by fde-mato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ size_t	ft_linelen(char *str)
 	size_t	n;
 
 	if (!str)
-		return(0);
+		return (0);
 	n = 0;
 	while (str[n] && str[n] != '\n')
 		n++;
@@ -25,6 +25,7 @@ size_t	ft_linelen(char *str)
 		n++;
 	return (n);
 }
+
 void	ft_buffshort(char *buffer)
 {
 	int	i;
@@ -40,6 +41,7 @@ void	ft_buffshort(char *buffer)
 		buffer[k++] = buffer[i++];
 	buffer[k] = '\0';
 }
+
 char	*ft_strjoin(char *s1, char *buffer)
 {
 	size_t	i;
