@@ -6,7 +6,7 @@
 /*   By: fde-mato <fde-mato@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 15:25:22 by fde-mato          #+#    #+#             */
-/*   Updated: 2025/03/06 16:25:48 by fde-mato         ###   ########.fr       */
+/*   Updated: 2025/03/07 21:59:09 by fde-mato         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,25 @@ void	ft_buffshort(char *buffer)
 {
 	int	i;
 	int	k;
+	int	found_newline;
 
 	i = 0;
 	k = 0;
-	while (buffer[i] != '\n' && buffer[i])
+	found_newline = 0;
+	if (buffer == NULL)
+		return ;
+	while (buffer[i])
+	{
+		if (found_newline != '\0')
+		{
+			buffer[k] = buffer[i];
+			k++;
+		}
+		if (buffer[i] == '\n')
+			found_newline = 1;
+		buffer[i] = '\0';
 		i++;
-	if (buffer[i] == '\n')
-		i++;
-	while (buffer[k])
-		buffer[k++] = buffer[i++];
-	buffer[k] = '\0';
+	}
 }
 
 char	*ft_strjoin(char *s1, char *buffer)
